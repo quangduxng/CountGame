@@ -1,0 +1,5 @@
+export enum STATUS_GAME {
+    START = "LET'S PLAY",
+    GAME_OVER = "GAME OVER",
+    ALL_CLEARED = "ALL CLEARED"
+}
