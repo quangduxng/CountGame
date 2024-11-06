@@ -52,11 +52,11 @@ function FramePlay({ numberOfPoints }: FramePlayProps) {
         if (isReset && isAuto) {
             const interval = setInterval(() => {
                 pressButtonNumber(choseCurrentNumber);
-            }, 1000); // adjust delay as needed
+            }, 500);
             if (status === STATUS_GAME.ALL_CLEARED) {
                 clearInterval(interval)
             }
-            return () => clearInterval(interval); // Cleanup
+            return () => clearInterval(interval);
         }
     }, [choseCurrentNumber, isReset, status, isAuto]);
     const points = useMemo(() => {
@@ -66,13 +66,13 @@ function FramePlay({ numberOfPoints }: FramePlayProps) {
         });
     }, [numberOfPoints]);
 
-    if (!isReset || status === STATUS_GAME.GAME_OVER) {
-        return <div ref={boxRef} className="w-[90%] min-h-[90vh] border-1 border-solid border-black bg-white relative" />;
-    }
+    // if (!isReset || status === STATUS_GAME.GAME_OVER) {
+    //     return <div ref={boxRef} className="w-[90%] min-h-[90vh] border-1 border-solid border-black bg-white relative" />;
+    // }
 
     return (
         <div ref={boxRef} className="w-[90%] min-h-[90vh] border-1 border-solid border-black bg-white relative">
-            {points.reverse().map(({ position, index }) => (
+            {isReset && points.reverse().map(({ position, index }) => (
                 <div
                     key={index}
                     style={{

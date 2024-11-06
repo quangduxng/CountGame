@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { CombinedContext } from '../../store/CombineProvider';
+import { STATUS_GAME } from '../../utils/enum';
 type CircleButtonProps = {
   number: number,
   pressButtonNumber: Function,
@@ -7,19 +8,20 @@ type CircleButtonProps = {
 
 function CircleButton({ number, pressButtonNumber }: CircleButtonProps) {
   const choseCurrentNumber = useContext(CombinedContext).state.NumberState.choseCurrentNumber
-  const { isAuto } = useContext(CombinedContext).state.StatusState
+  const { isAuto, status } = useContext(CombinedContext).state.StatusState
   const [timer, setTimer] = useState<number>(2);
   const [opacity, setOpacity] = useState(100);
   const [isClick, setClick] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState(true);
 
   const onClickButton = useCallback(() => {
-    setClick(true);
+    if (status === STATUS_GAME.GAME_OVER) return
+    setClick(choseCurrentNumber === number);
     pressButtonNumber(number);
-  }, [number, pressButtonNumber]);
+  }, [number, pressButtonNumber, status]);
 
   useEffect(() => {
-    if ((timer > 0 && isClick)) {
+    if (timer > 0 && isClick) {
       const interval = setInterval(() => {
         setTimer(prevCount => {
           const newCount = Math.max(prevCount - 0.1, 0);

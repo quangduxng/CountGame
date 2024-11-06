@@ -23,6 +23,8 @@ function Timer() {
                 clearInterval(timer)
             }
             return () => clearInterval(timer);
+        } else {
+            setTotalTime(0)
         }
     }, [isReset, status]);
 

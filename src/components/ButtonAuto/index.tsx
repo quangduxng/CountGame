@@ -1,11 +1,11 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useEffect } from 'react'
 import { CombinedContext } from '../../store/CombineProvider'
 
 type Props = {}
 
 function ButtonAuto({ }: Props) {
     const { dispatch } = useContext(CombinedContext)
-    const { isAuto } = useContext(CombinedContext).state.StatusState
+    const { isAuto, isReset } = useContext(CombinedContext).state.StatusState
     const onHandleAuto = useCallback(
         () => {
             dispatch({
@@ -13,6 +13,14 @@ function ButtonAuto({ }: Props) {
                 payload: !isAuto
             })
         }, [isAuto])
+    useEffect(() => {
+        if (isReset) {
+            dispatch({
+                type: 'click',
+                payload: 1,
+            });
+        }
+    }, [isReset])
     return (
         <button onClick={onHandleAuto}>Auto Play ({!isAuto ? 'ON' : 'OFF'})</button>
     )
