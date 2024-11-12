@@ -64,7 +64,7 @@ function FramePlay({ numberOfPoints }: FramePlayProps) {
             const position = generateRandomPosition(boxRef);
             return { position, index };
         });
-    }, [numberOfPoints]);
+    }, [numberOfPoints, isReset]);
 
     return (
         <div ref={boxRef} className="w-[90%] min-h-[90vh] border-1 border-solid border-black bg-white relative">
