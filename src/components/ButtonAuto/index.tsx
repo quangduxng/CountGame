@@ -20,6 +20,10 @@ function ButtonAuto({ }: Props) {
                 payload: 1,
             });
         }
+        dispatch({
+            type: 'set_auto',
+            payload: false
+        })
     }, [isReset])
     return (
         <button onClick={onHandleAuto}>Auto Play ({!isAuto ? 'ON' : 'OFF'})</button>
