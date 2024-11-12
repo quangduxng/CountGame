@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useReducer, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './App.css';
 import ButtonAuto from './components/ButtonAuto';
 import ButtonPlay from './components/ButtonPlay';
@@ -12,7 +12,7 @@ import { STATUS_GAME } from './utils/enum';
 function App() {
   const { dispatch } = useContext(CombinedContext)
   const { isReset, status } = useContext(CombinedContext).state.StatusState
-  // const boxRef = useRef<HTMLDivElement | null>(null);
+
   const [numberOfPoints, setNumberOfPoints] = useState(0)
   useEffect(() => {
     if ((status === STATUS_GAME.ALL_CLEARED && isReset) || (status === STATUS_GAME.GAME_OVER && isReset)) {

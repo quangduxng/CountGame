@@ -5,7 +5,6 @@ import { STATUS_GAME } from '../../utils/enum'
 const InputPoints = ({ setNumberOfPoints }: { setNumberOfPoints: Function }) => {
     const { dispatch } = useContext(CombinedContext)
     const { status } = useContext(CombinedContext).state.StatusState
-    const { numberOfPoints } = useContext(CombinedContext).state.StatusState
     useEffect(() => {
         status === STATUS_GAME.GAME_OVER && dispatch({
             type: 'set_number_points',
@@ -14,7 +13,7 @@ const InputPoints = ({ setNumberOfPoints }: { setNumberOfPoints: Function }) => 
     }, [status])
     return (
         <div>Point:
-            <input  onChange={(e: any) => {
+            <input onChange={(e: any) => {
                 dispatch({
                     type: 'set_reset',
                     payload: false

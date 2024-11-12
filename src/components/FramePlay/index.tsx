@@ -66,10 +66,6 @@ function FramePlay({ numberOfPoints }: FramePlayProps) {
         });
     }, [numberOfPoints]);
 
-    // if (!isReset || status === STATUS_GAME.GAME_OVER) {
-    //     return <div ref={boxRef} className="w-[90%] min-h-[90vh] border-1 border-solid border-black bg-white relative" />;
-    // }
-
     return (
         <div ref={boxRef} className="w-[90%] min-h-[90vh] border-1 border-solid border-black bg-white relative">
             {isReset && points.reverse().map(({ position, index }) => (
